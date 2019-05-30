@@ -46,57 +46,33 @@ def gray(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
-def movieframework(bg, img, x, y):
-    (x1, x2) = x
-    (y1, y2) = y
-    final = bg.copy()
-    final[x1:x2, y1:y2] = img
-    return final
 
-def movie(background, img):
-    img = cv2.resize(img, (100, 100))
-    print(background.shape)
-    background = cv2.resize(background, (400, 400))
-    print(background.shape)
-    print(img.shape)
-    imgwidth, imgheight, _ = img.shape
-    bgwidth, bgheight, _ = background.shape
-    finalimg = movieframework(background, img, (300, 400), (0, 100))
-    # Variavel de estado da imagem (posicao dela numa grid do background, por agora apenas horizontal) e limite
-    horizontalindex = 0
-    limit = 4
-    while True:
-        cv2.imshow("Movie", finalimg)
-        k = cv2.waitKeyEx()
-        if k == 65363:
-            print("right")
-            horizontalindex += 1
-            if horizontalindex >= limit:
-                horizontalindex -= 1
-            else:
-                finalimg = movieframework(background, img, (300, 400), (horizontalindex*100, horizontalindex*100 + 100))
-        elif k == 65361:
-            print("left")
-            horizontalindex -= 1
-            if horizontalindex >= 0:
-                finalimg = movieframework(background, img, (300, 400), (horizontalindex*100, horizontalindex*100 + 100))
-            else:
-                horizontalindex += 1
-        else:
-            print("Only horizontal moves alowed! Use the right and left arrow keys")
-            break
+def imagePlacer(image1, image2, corner):
+    if(corner == "BL"):
+        image1[0:image2.shape[0], 0:image2.shape[1]] = image2
+    elif(corner == "BR"):
+        image1[image1.shape[0] - image2.shape[0]:image1.shape[0], image1.shape[1] - image2.shape[1]:image1.shape[0]] = image2
+    elif(corner == "UL"):
+        image1[image1.shape[0] - image2.shape[0]:image1.shape[0], 0:image2.shape[1]] = image2
+    elif(corner == "UR"):
+        image1[0:image2.shape[0], image1.shape[1] - image2.shape[1]:image1.shape[0]] = image2
+        
+    return image1
 
 
 def main():
     filename = "sunfield.jpg"
     img = cv2.imread(filename)
+    img = cv2.resize(img, (100, 100))
     background = np.zeros([400, 400, 3], np.uint8)
     """print(img.shape)
 	img = rotation(img, 180)
 	img = crop(img)
 	img = gray(img)
 	save(filename, img)"""
-    movie(background, img)
-
+    background = imagePlacer(background, img, "UR")
+    cv2.imshow("corner", background)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 main()

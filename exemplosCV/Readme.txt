@@ -3,17 +3,26 @@ Funções disponiveis:
 Cor
 	gray -      gray(image)
 
+	blur -      blur(image, level)
+
 Formato
 	crop -      crop(image)
 
 	rotation -  rotation(image, graus)
+				image rotation 90 
+
+	scale - 	scale(image, scale)	
+
+	resize -    resize(image, x, y)
+				x: (num| +num | -num)
+				y: (num| +num | -num)
 
 MISC
+	place -  	place(image1, image2, canto)
+				canto: ("BL"|"BR"|"UL"|"UR")
+
 	save -      save(newfilename, image)
 
 	show -      show(image)
-Movie
-	movieframework(bg, img, x, y)  #x = (x1,x2) & y = (y1,y2)
-		Poe a imagem (img) no background (bg) nas coordendas dadas pelos dois tuplos x e y
-	movie(background, img)
-		Cria uma janela com o background definido (neste momento o background esta a ser resized para 400x400 e a img para 100x100 mas dá para alterar facilmente com o valor da variavel limite e as dimensoes do resize)
+
+load "qq.jpg" | rotate 10 | crop ???  =>  (save | show | ) "jpg" "qqqq.jpg"
