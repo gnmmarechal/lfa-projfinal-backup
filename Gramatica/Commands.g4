@@ -7,6 +7,6 @@ movie : function+ (PIPE function)*;
 function : OP ARG;
 
 PIPE : '|';
-ARG  : [a-z0-9.]+;
-OP   : [A-Z]+;				// maiúscula para distinção entre operação e argumento
+OP   : 'gray' | 'blur' | 'crop' | 'rotate' | 'scale' | 'resize' | 'place' | 'save' | 'show' | 'load';
+ARG  : [A-Za-z0-9.]+;
 WS   : [ \t\r\n]+ -> skip ;
