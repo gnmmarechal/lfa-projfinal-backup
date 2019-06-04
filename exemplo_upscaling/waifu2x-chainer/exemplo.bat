@@ -1,0 +1,1 @@
+python waifu2x.py -m noise_scale -n 2 -i path/to/image/or/directory -a 0
