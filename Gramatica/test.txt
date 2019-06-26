@@ -1,0 +1,1 @@
+load image.jpg | rotate 10 | save -> image2.jpg | load image2.jpg | edges rotate 10 | show gray image.jpg
