@@ -24,11 +24,11 @@ function :   load					#LoadImage
 		   | 'scale' function		#Scale
 		   | 'resize' function		#Resize
 		   | 'place' function		#Place
-		   | IMAGE 					#Imagem
 		   | ARG 					#Argument
+		   | IMAGE 					#Imagem
 		   ;	
 
 PIPE  : '|';
+ARG   : [A-Za-z0-9]+;
 IMAGE : [A-Za-z0-9.]+;
-ARG   : [A-Za-z0-9.]+;
 WS    : [ \t\r\n]+ -> skip ;
