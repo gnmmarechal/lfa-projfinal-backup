@@ -1,0 +1,11 @@
+img = open "/Images/ball.png" | imgage = img zoom | show image
+img = open "ball.png" | image = img contour | show image
+img = open "/Images/Paisagens/serra.png" | image = img brightness 100 | image1 = image contrast 100 | show image1
+img = open "/Images/Portugal/Paisagens/serra.png" | image = img saturation 100 | show image
+img = open "ball.png" | image = img zoom 50 | show image
+img = open "ball.png" | image = img crop 50 50 | show image
+img = open "ball.png" | image = img gray | show image
+img = open "ball.png" | image = img rotate 180 | show image
+img = open "ball.png" | image = img extract | show image
+img = open "ball.png" | img1 = open "/Images/ball.png" | image = img img1 diference | show image
+img = open "ball.png" | image = img gray rotate 180 crop 50 50 zoom 50 | show image
