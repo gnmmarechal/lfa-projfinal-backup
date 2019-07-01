@@ -2,6 +2,7 @@ public class CropPlugin implements Plugin
 {
 	private String[] args = {"image", "r0", "r1", "r2", "r3"};
 	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {};
 	
 	private String getArgString()
 	{
@@ -30,6 +31,11 @@ public class CropPlugin implements Plugin
 	public String[] getFunctionDependencies()
 	{
 		return deps;
+	}
+	
+	public String[] getPluginDependencies()
+	{
+		return pluginDeps;
 	}
 	public String getFunction()
 	{
