@@ -29,7 +29,21 @@ public class LFACodeGenerator
 			{
 				try {
 					Plugin pluginToAdd = PluginManager.load(foundFile.substring(0,foundFile.lastIndexOf('.')));
-					loadedPluginList.add(pluginToAdd);
+					if (loadedPluginList.isEmpty()) loadedPluginList.add(pluginToAdd);
+					else
+					{
+						for (Plugin p : loadedPluginList) // Check for duplicates
+						{
+							if (!p.getFunctionName().equals(pluginToAdd.getFunctionName()))
+							{
+								loadedPluginList.add(pluginToAdd);
+							}
+							else
+							{
+								System.err.println("WARNING: Function name conflict found (" + p.getFunctionName() + "). Skipping plugin.");
+							}
+						}
+					}
 					//System.out.println("Loaded plugin: " + pluginToAdd.getFunctionName());
 				} catch (InstantiationException e)
 				{

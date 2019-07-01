@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class CropPlugin implements Plugin
 {
 	private String[] args = {"image", "r0", "r1", "r2", "r3"};
