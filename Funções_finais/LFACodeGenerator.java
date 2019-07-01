@@ -168,8 +168,11 @@ public class LFACodeGenerator
 		
 		// Adicionar as funções usadas
 		
-		codeOut += this.getFunctionBlock();
+		codeOut += "# Language Functions\n" + this.getFunctionBlock();
 		
+		// Adicionar código do programa
+		
+		codeOut += "# Program\n";
 		
 		codeOut += "# EOF - Generated with LFACodeGenerator";
 		return codeOut;
