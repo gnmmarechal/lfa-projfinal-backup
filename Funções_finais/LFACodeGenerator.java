@@ -8,7 +8,7 @@ public class LFACodeGenerator
 	private List<Plugin> loadedPluginList;
 	private List<Plugin> usedPluginList;
 
-	public LFACodeGenerator()
+	public LFACodeGenerator() throws Exception
 	{
 		codeOut = "";
 		this.loadedPluginList = new ArrayList<Plugin>();
@@ -54,6 +54,29 @@ public class LFACodeGenerator
 					//e.printStackTrace();
 				}
 			}
+		}
+		
+		// Verificar dependências de plugins
+		List<String> depList = new ArrayList<String>();
+		for (Plugin p : loadedPluginList)
+		{
+			for (String dep : p.getPluginDependencies())
+			{
+				if (!depList.contains(dep))
+					depList.add(dep);
+			}
+		}
+		
+		for (String depName : depList)
+		{
+			boolean foundDep = false;
+			for (Plugin p : loadedPluginList)
+			{
+				if (p.getFunctionName().equals(depName))
+					foundDep = true;
+			}
+			// Se for false, não encontrou a dependência
+			throw new Exception("Missing plugin dependency: " + depName);
 		}
 	}
 	public boolean requireFunction(String functionName) // Returns true if successful, false if function isn't found
