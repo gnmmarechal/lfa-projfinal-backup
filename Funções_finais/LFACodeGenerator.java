@@ -100,7 +100,6 @@ public class LFACodeGenerator
 		
 	}
 	
-	
 	public List<Plugin> getLoadedPlugins()
 	{
 		return loadedPluginList;
@@ -122,4 +121,57 @@ public class LFACodeGenerator
 		return retList;
 	}
 	
+	public List<String> getImports()
+	{
+		List<String> importList = new ArrayList<String>();
+		for (Plugin p : usedPluginList)
+		{
+			for (String dep : p.getFunctionDependencies())
+			{
+				if (!importList.contains(dep))
+					importList.add(dep);
+			}
+		}
+		
+		return importList;
+	}
+	
+	public String getImportBlock()
+	{
+		String retBlock = "";
+		List<String> imports = this.getImports();
+		for (String impVal : imports)
+		{
+			retBlock += "import " + impVal + "\n";
+		}
+		
+		return retBlock;
+	}
+	
+	public String getFunctionBlock()
+	{
+		String retBlock = "";
+		for (Plugin p : usedPluginList)
+		{
+			retBlock += p.getFunction() + "\n";
+		}
+		return retBlock;
+	}
+	public String generateCode()
+	{
+		codeOut = "#!/usr/bin/env python3" + // Starts with the shebang line
+				"\n# Generated with LFACodeGenerator\n";
+				
+		// Adicionar o bloco de import
+		
+		codeOut += this.getImportBlock();
+		
+		// Adicionar as funções usadas
+		
+		codeOut += this.getFunctionBlock();
+		
+		
+		codeOut += "# EOF - Generated with LFACodeGenerator";
+		return codeOut;
+	}
 }

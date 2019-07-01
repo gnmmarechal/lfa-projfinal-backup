@@ -44,6 +44,10 @@ public class TestMain {
 		codeGen.requireFunction("imageplacer");
 		
 		System.out.println("Used plugins: " + Arrays.toString(LFACodeGenerator.getPluginNames(codeGen.getUsedPlugins()).toArray()));
+		
+		System.out.println("Current import block:\n" + codeGen.getImportBlock());
+		
+		System.out.println("Code output:\n" + codeGen.generateCode());
 	}
 	//Função para simplificar o teste
 	private static void printSpecs(Plugin p) {
