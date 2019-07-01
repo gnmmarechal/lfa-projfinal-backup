@@ -1,16 +1,17 @@
 //import org.stringtemplate.v4.*;
 import java.util.*;
 import java.io.*;
+import java.util.stream.*;
 
 public class LFACodeGenerator
 {
-	private String codeOut;
 	private List<Plugin> loadedPluginList;
 	private List<Plugin> usedPluginList;
+	private List<String> codeBlocks;
 
 	public LFACodeGenerator() throws Exception
 	{
-		codeOut = "";
+		this.codeBlocks = new ArrayList<String>();
 		this.loadedPluginList = new ArrayList<Plugin>();
 		this.usedPluginList = new ArrayList<Plugin>();
 		// Load plugins
@@ -159,7 +160,7 @@ public class LFACodeGenerator
 	}
 	public String generateCode()
 	{
-		codeOut = "#!/usr/bin/env python3" + // Starts with the shebang line
+		String codeOut = "#!/usr/bin/env python3" + // Starts with the shebang line
 				"\n# Generated with LFACodeGenerator\n";
 				
 		// Adicionar o bloco de import
@@ -174,7 +175,42 @@ public class LFACodeGenerator
 		
 		codeOut += "# Program\n";
 		
+		for (String line : codeBlocks)
+		{
+			codeOut += line + "\n";
+		}
 		codeOut += "# EOF - Generated with LFACodeGenerator";
 		return codeOut;
+	}
+	
+	public boolean setVariable(String variableName, String functionName, List<String> functionArgs)
+	{
+		if (!this.requireFunction(functionName))
+			return false;
+		codeBlocks.add(generateVariableSet(variableName, functionName, functionArgs));
+		return true;
+	}
+	private String generateFunctionCall(String functionName, List<String> functionArgs) // Isto deveria ser feito no parser propriamente dito, está aqui para propósitos de teste.
+	{
+		String csvArgs = functionArgs.stream()
+			.collect(Collectors.joining(", "));
+		String functionCall = functionName + "(" + csvArgs + ")";
+		return functionCall;
+	}
+	
+	private String generateVariableSet(String variableName, String functionName, List<String> functionArgs)
+	{
+		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
+	}
+	
+	public boolean callFunction(String functionName, List<String> functionArgs) // Isto deveria ser feito no parser propriamente dito, está aqui para propósitos de teste.
+	{
+		if (!this.requireFunction(functionName))
+			return false;
+
+		codeBlocks.add(generateFunctionCall(functionName, functionArgs));
+		
+		return true;
+		
 	}
 }

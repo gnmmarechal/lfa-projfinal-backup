@@ -43,6 +43,14 @@ public class TestMain {
 		System.out.println("Requiring image placer function...");
 		codeGen.requireFunction("imageplacer");
 		
+		System.out.println("Calling function...");
+		String[] arg = {"image", "1", "2", "3", "4"};
+		System.out.println(codeGen.callFunction("crop", Arrays.asList(arg)));
+		
+		System.out.println("Setting variable...");
+		String[] argss = {"image", "1", "2", "3", "4"};
+		System.out.println(codeGen.setVariable("img", "crop", Arrays.asList(argss)));
+		
 		System.out.println("Used plugins: " + Arrays.toString(LFACodeGenerator.getPluginNames(codeGen.getUsedPlugins()).toArray()));
 		
 		System.out.println("Current import block:\n" + codeGen.getImportBlock());
