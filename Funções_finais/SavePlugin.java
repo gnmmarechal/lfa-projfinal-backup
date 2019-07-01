@@ -1,6 +1,6 @@
-public class CropPlugin implements Plugin
+public class SavePlugin implements Plugin
 {
-	private String[] args = {"image", "r0", "r1", "r2", "r3"};
+	private String[] args = {"filename", "image"};
 	private String[] deps = {"cv2"};
 	private String[] pluginDeps = {};
 	
@@ -15,9 +15,10 @@ public class CropPlugin implements Plugin
 		return retString;
 		
 	}
+	
 	public String getFunctionName()
 	{
-		return "crop";
+		return "save";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -38,8 +39,8 @@ public class CropPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"	r = cv2.selectROI(image)\n" +
-				"	imCrop = image[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]\n" +
-				"	return imCrop";
+				"	cv2.imshow(\"Result\", image)\n" +
+				"	cv2.imwrite(filename, image)\n" +
+				"	cv2.destroyAllWindows()";
 	}
 }

@@ -26,6 +26,13 @@ def rotation(image, graus):
 
 def save(newfilename, image):
     cv2.imshow("Result", image)
+    cv2.imwrite(newfilename, image)
+    cv2.destroyAllWindows()
+
+""" Para esta função poderá haver diversas maneiras de a concretizar
+Mas o pedido de confirmação deveria ficar antes da função
+def save(newfilename, image):
+    cv2.imshow("Result", image)
     k = cv2.waitKey(0)
     while True:
         if k == ord("y"):
@@ -34,7 +41,7 @@ def save(newfilename, image):
         elif k == ord("n"):
             break
     cv2.destroyAllWindows()
-
+"""
 
 def show(image):
     cv2.imshow("Result", image)
@@ -56,7 +63,8 @@ def imagePlacer(image1, image2, corner):
         image1[image1.shape[0] - image2.shape[0]:image1.shape[0], 0:image2.shape[1]] = image2
     elif(corner == "UR"):
         image1[0:image2.shape[0], image1.shape[1] - image2.shape[1]:image1.shape[0]] = image2
-        
+    else:
+		print("invalid parameter")
     return image1
 
 

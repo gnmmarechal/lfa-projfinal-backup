@@ -1,6 +1,6 @@
-public class CropPlugin implements Plugin
+public class RotationPlugin implements Plugin
 {
-	private String[] args = {"image", "r0", "r1", "r2", "r3"};
+	private String[] args = {"image", "graus"};
 	private String[] deps = {"cv2"};
 	private String[] pluginDeps = {};
 	
@@ -15,9 +15,10 @@ public class CropPlugin implements Plugin
 		return retString;
 		
 	}
+	
 	public String getFunctionName()
 	{
-		return "crop";
+		return "rotation";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -38,8 +39,15 @@ public class CropPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"	r = cv2.selectROI(image)\n" +
-				"	imCrop = image[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]\n" +
-				"	return imCrop";
+				"	(h, w) = image.shape[:2]\n" +
+				"	center = (w / 2, h / 2)\n" +
+				"	if isinstance(graus, str):\n" +
+				"	\ttry:\n" +
+				"	\t\tgraus = int(graus)\n" +
+				"	\texcept ValueError:\n" +
+				"	\t\tprint(\"given argument is not a number\")\n" +
+				"	M = cv2.getRotationMatrix2D(center, graus, 1.0)\n" +
+				"	rotated = cv2.warpAffine(image, M, (w, h))\n" +
+				"	return rotated";
 	}
 }
