@@ -1,7 +1,7 @@
 import java.util.*;
 public class TestMain {
 	
-	public static void main (String[] args) {
+	public static void main (String[] args) throws Exception{
 		System.out.println("Basic Plugin Test:\n");
 		Plugin cropPlugin = new CropPlugin();
 		printSpecs(cropPlugin);

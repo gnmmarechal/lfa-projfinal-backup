@@ -87,13 +87,19 @@ public class LFACodeGenerator
 			if (plg.getFunctionName().equals(functionName))
 			{
 				// Add plugin to used list
-				usedPluginList.add(plg);
+				for (String depName : plg.getPluginDependencies())
+				{
+					this.requireFunction(depName);
+				}
+				if (!usedPluginList.contains(plg))
+					usedPluginList.add(plg);
 				return true;
 			}
 		}
 		return false;
 		
 	}
+	
 	
 	public List<Plugin> getLoadedPlugins()
 	{
