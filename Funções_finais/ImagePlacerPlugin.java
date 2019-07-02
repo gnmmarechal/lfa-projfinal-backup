@@ -1,7 +1,7 @@
 public class ImagePlacerPlugin implements Plugin
 {
 	private String[] args = {"image1, image2, corner"};
-	private String[] deps = {"cv2"};
+	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
 	private String getArgString()

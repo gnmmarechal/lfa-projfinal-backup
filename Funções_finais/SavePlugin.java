@@ -1,7 +1,7 @@
 public class SavePlugin implements Plugin
 {
 	private String[] args = {"filename", "image"};
-	private String[] deps = {"cv2"};
+	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
 	private String getArgString()

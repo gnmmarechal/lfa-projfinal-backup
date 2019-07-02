@@ -1,7 +1,7 @@
 public class RotationPlugin implements Plugin
 {
 	private String[] args = {"image", "graus"};
-	private String[] deps = {"cv2"};
+	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
 	private String getArgString()
