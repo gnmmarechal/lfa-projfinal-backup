@@ -27,7 +27,7 @@ function :	ARG '=' function				#Variable
 		   	| function 'resize' NUM NUM 	#Resize
 		   	| function 'extract' 			#Extract
 		   	| function 'contour' 			#Contour
-		   	| (ARG ARG) 'diference'	        #Diference
+		   	| (ARG ARG) 'diference'	        #Difference
 		   	| ARG 							#Argument
 		   	| IMAGE 						#Imagem
 		   	;	
