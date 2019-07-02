@@ -187,10 +187,10 @@ public class LFACodeGenerator
 	{
 		if (!this.requireFunction(functionName))
 			return false;
-		codeBlocks.add(generateVariableSet(variableName, functionName, functionArgs));
+		this.addCode(generateVariableSet(variableName, functionName, functionArgs));
 		return true;
 	}
-	private String generateFunctionCall(String functionName, List<String> functionArgs) // Isto deveria ser feito no parser propriamente dito, está aqui para propósitos de teste.
+	public static String generateFunctionCall(String functionName, List<String> functionArgs)
 	{
 		String csvArgs = functionArgs.stream()
 			.collect(Collectors.joining(", "));
@@ -198,19 +198,24 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
-	private String generateVariableSet(String variableName, String functionName, List<String> functionArgs)
+	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs)
 	{
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
 	}
 	
-	public boolean callFunction(String functionName, List<String> functionArgs) // Isto deveria ser feito no parser propriamente dito, está aqui para propósitos de teste.
+	public boolean callFunction(String functionName, List<String> functionArgs) 
 	{
 		if (!this.requireFunction(functionName))
 			return false;
 
-		codeBlocks.add(generateFunctionCall(functionName, functionArgs));
+		this.addCode(generateFunctionCall(functionName, functionArgs));
 		
 		return true;
 		
+	}
+	
+	public void addCode(String line) // Isto simplesmente adiciona um elemento aos blocos de código
+	{
+		codeBlocks.add(line);
 	}
 }
