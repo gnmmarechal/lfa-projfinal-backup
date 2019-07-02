@@ -5,9 +5,9 @@ import java.util.stream.*;
 
 public class LFACodeGenerator
 {
-	private List<Plugin> loadedPluginList;
-	private List<Plugin> usedPluginList;
-	private List<String> codeBlocks;
+	private List<Plugin> loadedPluginList; // Todos os plugins encontrados ficam nesta lista
+	private List<Plugin> usedPluginList; // Todos os plugins usados são adicionados pelo gestor de dependências. Plugins podem ser adicionados por nome com requireFunction.
+	private List<String> codeBlocks; // Código do programa em si
 
 	public LFACodeGenerator() throws Exception
 	{
@@ -46,9 +46,6 @@ public class LFACodeGenerator
 						}
 					}
 					//System.out.println("Loaded plugin: " + pluginToAdd.getFunctionName());
-				} catch (InstantiationException e)
-				{
-					//System.out.println("Found non-plugin class : " + foundFile);
 				}
 				catch (Exception e) {
 					//System.out.println("Failed to load plugin : " + foundFile);
@@ -137,7 +134,7 @@ public class LFACodeGenerator
 		return importList;
 	}
 	
-	public String getImportBlock()
+	public String getImportBlock() // Devolve o bloco de imports deste programa
 	{
 		String retBlock = "";
 		List<String> imports = this.getImports();
@@ -149,7 +146,7 @@ public class LFACodeGenerator
 		return retBlock;
 	}
 	
-	public String getFunctionBlock()
+	public String getFunctionBlock() // Devolve o bloco de funções predefinidas da linguagem deste programa
 	{
 		String retBlock = "";
 		for (Plugin p : usedPluginList)
@@ -183,14 +180,14 @@ public class LFACodeGenerator
 		return codeOut;
 	}
 	
-	public boolean setVariable(String variableName, String functionName, List<String> functionArgs)
+	public boolean setVariable(String variableName, String functionName, List<String> functionArgs) // Adiciona uma linha de código para definir uma variável para o valor de uma função. Também gere as dependências.
 	{
 		if (!this.requireFunction(functionName))
 			return false;
 		this.addCode(generateVariableSet(variableName, functionName, functionArgs));
 		return true;
 	}
-	public static String generateFunctionCall(String functionName, List<String> functionArgs)
+	public static String generateFunctionCall(String functionName, List<String> functionArgs) // Gera uma linha de código de chamada de função 
 	{
 		String csvArgs = functionArgs.stream()
 			.collect(Collectors.joining(", "));
@@ -198,12 +195,12 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
-	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs)
+	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
 	{
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
 	}
 	
-	public boolean callFunction(String functionName, List<String> functionArgs) 
+	public boolean callFunction(String functionName, List<String> functionArgs) // Adiciona uma chamada de função ao código do programa
 	{
 		if (!this.requireFunction(functionName))
 			return false;
@@ -214,8 +211,8 @@ public class LFACodeGenerator
 		
 	}
 	
-	public void addCode(String line) // Isto simplesmente adiciona um elemento aos blocos de código
+	public void addCode(String line) // Isto simplesmente adiciona um elemento aos blocos de código. Não deverá ser usado para chamar funções pois as dependências não são resolvidas automaticamente, mas se necessário, requireFunction pode ser usado para as resolver.
 	{
-		codeBlocks.add(line);
+		this.codeBlocks.add(line);
 	}
 }
