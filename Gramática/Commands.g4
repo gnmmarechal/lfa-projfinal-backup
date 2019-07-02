@@ -2,7 +2,7 @@ grammar Commands;
 
 stat  : movie* EOF; 
 
-movie : function (PIPE function)* NEWLINE?;
+movie : function (PIPE function)* NEWLINE*;
 
 open  : 'open' IMAGE;
 
@@ -27,7 +27,7 @@ function :	ARG '=' function				#Variable
 		   	| function 'resize' NUM NUM 	#Resize
 		   	| function 'extract' 			#Extract
 		   	| function 'contour' 			#Contour
-		   	| (ARG ARG) 'difference'	        #Difference
+		   	| (ARG ARG) 'diference'	        #Diference
 		   	| ARG 							#Argument
 		   	| IMAGE 						#Imagem
 		   	;	
