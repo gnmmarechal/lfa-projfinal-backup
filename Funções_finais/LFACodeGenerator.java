@@ -200,6 +200,12 @@ public class LFACodeGenerator
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
 	}
 	
+	public boolean callFunction(String functionName, String functionArg)
+	{
+		List<String> args = new ArrayList<String>();
+		args.add(functionArg);
+		return this.callFunction(functionName, args);
+	}
 	public boolean callFunction(String functionName, List<String> functionArgs) // Adiciona uma chamada de função ao código do programa
 	{
 		if (!this.requireFunction(functionName))
