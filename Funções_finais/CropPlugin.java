@@ -1,6 +1,6 @@
 public class CropPlugin implements Plugin
 {
-	private String[] args = {"image", "r0", "r1", "r2", "r3"};
+	private String[] args = {"image"};
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
