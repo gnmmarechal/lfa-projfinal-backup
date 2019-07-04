@@ -1,41 +1,51 @@
 grammar Commands;
 
-stat  : movie* EOF; 
+program  : statement* EOF; 
 
-movie : function (PIPE function)* NEWLINE?;
+statement 	:	instruction ';'
+				| block
+				| forcycle
+		 		;
 
-open  : 'open' IMAGE;
+instruction	:	assignment
+				| writing
+				;
 
-save  : 'save' '->' function*;
+block	:	'{' statement* '}';
 
-show  : 'show' function*;
+assignment	:	ID '=' IMAGE
+				| ID '=' ID
+				| ID '=' writing
+				;
 
-function :	ARG '=' function				#Variable
-			| open							#OpenImage
-		   	| save							#SaveImage
-		   	| show							#ShowImage
-		   	| function 'gray'				#Gray
-		   	| function 'blur'				#Blur
-		   	| function 'crop' NUM NUM		#Crop
-		   	| function 'zoom' NUM? 			#Zoom
-		   	| function 'saturation' NUM		#Saturation
-		   	| function 'brightness'	NUM		#Brightness
-		   	| function 'edges' 				#Edges
-		   	| function 'contrast' NUM 		#Contrast
-		   	| function 'rotate' NUM			#Rotate
-		   	| function 'scale' NUM			#Scale
-		   	| function 'resize' NUM NUM 	#Resize
-		   	| function 'extract' 			#Extract
-		   	| function 'contour' 			#Contour
-		   	| (ARG ARG) 'difference'	        #Difference
-		   	| ARG 							#Argument
-		   	| IMAGE 						#Imagem
+writing		:	'(' writing ')'
+				| operation
+				;
+
+operation :	'save' (writing|ID|IMAGE)						#SaveImage
+		   	| 'show' (writing|ID|IMAGE)						#ShowImage
+		   	| 'gray' (writing|ID|IMAGE)							#Gray
+		   	| 'blur' (writing|ID|IMAGE)							#Blur
+		   	| 'crop' NUM NUM (writing|ID|IMAGE)				#Crop
+		   	| 'zoom' NUM (writing|ID|IMAGE)					#Zoom
+		   	| 'saturation' NUM	(writing|ID|IMAGE)				#Saturation
+		   	| 'brightness'	NUM	(writing|ID|IMAGE)				#Brightness
+		   	| 'edges' (writing|ID|IMAGE)						#Edges
+		   	| 'contrast' NUM (writing|ID|IMAGE)				#Contrast
+		   	| 'rotate' NUM	(writing|ID|IMAGE)					#Rotate
+		   	| 'scale' NUM	(writing|ID|IMAGE)					#Scale
+		   	| 'resize' NUM NUM (writing|ID|IMAGE)		 		#Resize
+		   	| 'extract' (writing|ID|IMAGE)						#Extract
+		   	| 'contour' (writing|ID|IMAGE)						#Contour
+		   	| 'difference' (writing|((ID|IMAGE) (ID|IMAGE)))	#Difference
 		   	;	
 
-PIPE	: '|';
+
+forcycle: 	'for' '(' LETTER '=' NUM ';' LETTER op=('<'|'>'|'==') NUM ';' LETTER increment=('++'|'--') ')' block;
+
+ID 	: [A-Za-z]+ [A-Za-z0-9_]*;
+LETTER: [a-zA-Z]+;
 NUM		: [0-9]+;
-ARG 	: [A-Za-z0-9]+;
 IMAGE   : '"' [A-Za-z0-9./]+ '"';
-NEWLINE : '\r' | '\n';
 COMMENT : '//' .*? '\n' -> skip;
-WS    	: [ \t]+ -> skip ;
+WS    	: [ \t\n\r]+ -> skip ;

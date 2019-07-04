@@ -7,293 +7,265 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface CommandsListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link CommandsParser#stat}.
+	 * Enter a parse tree produced by {@link CommandsParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterStat(CommandsParser.StatContext ctx);
+	void enterProgram(CommandsParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CommandsParser#stat}.
+	 * Exit a parse tree produced by {@link CommandsParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitStat(CommandsParser.StatContext ctx);
+	void exitProgram(CommandsParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CommandsParser#movie}.
+	 * Enter a parse tree produced by {@link CommandsParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterMovie(CommandsParser.MovieContext ctx);
+	void enterStatement(CommandsParser.StatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CommandsParser#movie}.
+	 * Exit a parse tree produced by {@link CommandsParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitMovie(CommandsParser.MovieContext ctx);
+	void exitStatement(CommandsParser.StatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CommandsParser#open}.
+	 * Enter a parse tree produced by {@link CommandsParser#instruction}.
 	 * @param ctx the parse tree
 	 */
-	void enterOpen(CommandsParser.OpenContext ctx);
+	void enterInstruction(CommandsParser.InstructionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CommandsParser#open}.
+	 * Exit a parse tree produced by {@link CommandsParser#instruction}.
 	 * @param ctx the parse tree
 	 */
-	void exitOpen(CommandsParser.OpenContext ctx);
+	void exitInstruction(CommandsParser.InstructionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CommandsParser#save}.
+	 * Enter a parse tree produced by {@link CommandsParser#block}.
 	 * @param ctx the parse tree
 	 */
-	void enterSave(CommandsParser.SaveContext ctx);
+	void enterBlock(CommandsParser.BlockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CommandsParser#save}.
+	 * Exit a parse tree produced by {@link CommandsParser#block}.
 	 * @param ctx the parse tree
 	 */
-	void exitSave(CommandsParser.SaveContext ctx);
+	void exitBlock(CommandsParser.BlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CommandsParser#show}.
+	 * Enter a parse tree produced by {@link CommandsParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterShow(CommandsParser.ShowContext ctx);
+	void enterAssignment(CommandsParser.AssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CommandsParser#show}.
+	 * Exit a parse tree produced by {@link CommandsParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitShow(CommandsParser.ShowContext ctx);
+	void exitAssignment(CommandsParser.AssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Gray}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * Enter a parse tree produced by {@link CommandsParser#writing}.
 	 * @param ctx the parse tree
 	 */
-	void enterGray(CommandsParser.GrayContext ctx);
+	void enterWriting(CommandsParser.WritingContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Gray}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * Exit a parse tree produced by {@link CommandsParser#writing}.
 	 * @param ctx the parse tree
 	 */
-	void exitGray(CommandsParser.GrayContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Variable}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariable(CommandsParser.VariableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Variable}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariable(CommandsParser.VariableContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Argument}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgument(CommandsParser.ArgumentContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Argument}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgument(CommandsParser.ArgumentContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Rotate}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterRotate(CommandsParser.RotateContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Rotate}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitRotate(CommandsParser.RotateContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Brightness}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterBrightness(CommandsParser.BrightnessContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Brightness}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitBrightness(CommandsParser.BrightnessContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Saturation}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterSaturation(CommandsParser.SaturationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Saturation}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitSaturation(CommandsParser.SaturationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Resize}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterResize(CommandsParser.ResizeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Resize}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitResize(CommandsParser.ResizeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Scale}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterScale(CommandsParser.ScaleContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Scale}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitScale(CommandsParser.ScaleContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Extract}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterExtract(CommandsParser.ExtractContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Extract}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitExtract(CommandsParser.ExtractContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Difference}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterDifference(CommandsParser.DifferenceContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Difference}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitDifference(CommandsParser.DifferenceContext ctx);
+	void exitWriting(CommandsParser.WritingContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SaveImage}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void enterSaveImage(CommandsParser.SaveImageContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code SaveImage}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void exitSaveImage(CommandsParser.SaveImageContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Imagem}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterImagem(CommandsParser.ImagemContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Imagem}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitImagem(CommandsParser.ImagemContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Edges}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterEdges(CommandsParser.EdgesContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Edges}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitEdges(CommandsParser.EdgesContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Contrast}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterContrast(CommandsParser.ContrastContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Contrast}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitContrast(CommandsParser.ContrastContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Crop}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterCrop(CommandsParser.CropContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Crop}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitCrop(CommandsParser.CropContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code OpenImage}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterOpenImage(CommandsParser.OpenImageContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code OpenImage}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitOpenImage(CommandsParser.OpenImageContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Contour}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void enterContour(CommandsParser.ContourContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Contour}
-	 * labeled alternative in {@link CommandsParser#function}.
-	 * @param ctx the parse tree
-	 */
-	void exitContour(CommandsParser.ContourContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code ShowImage}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void enterShowImage(CommandsParser.ShowImageContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code ShowImage}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void exitShowImage(CommandsParser.ShowImageContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Gray}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterGray(CommandsParser.GrayContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Gray}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitGray(CommandsParser.GrayContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Blur}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void enterBlur(CommandsParser.BlurContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Blur}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void exitBlur(CommandsParser.BlurContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Crop}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterCrop(CommandsParser.CropContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Crop}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitCrop(CommandsParser.CropContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Zoom}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void enterZoom(CommandsParser.ZoomContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Zoom}
-	 * labeled alternative in {@link CommandsParser#function}.
+	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
 	 */
 	void exitZoom(CommandsParser.ZoomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Saturation}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterSaturation(CommandsParser.SaturationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Saturation}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitSaturation(CommandsParser.SaturationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Brightness}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterBrightness(CommandsParser.BrightnessContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Brightness}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitBrightness(CommandsParser.BrightnessContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Edges}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterEdges(CommandsParser.EdgesContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Edges}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitEdges(CommandsParser.EdgesContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Contrast}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterContrast(CommandsParser.ContrastContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Contrast}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitContrast(CommandsParser.ContrastContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Rotate}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterRotate(CommandsParser.RotateContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Rotate}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitRotate(CommandsParser.RotateContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Scale}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterScale(CommandsParser.ScaleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Scale}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitScale(CommandsParser.ScaleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Resize}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterResize(CommandsParser.ResizeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Resize}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitResize(CommandsParser.ResizeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Extract}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterExtract(CommandsParser.ExtractContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Extract}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitExtract(CommandsParser.ExtractContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Contour}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterContour(CommandsParser.ContourContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Contour}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitContour(CommandsParser.ContourContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Difference}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterDifference(CommandsParser.DifferenceContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Difference}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitDifference(CommandsParser.DifferenceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CommandsParser#forcycle}.
+	 * @param ctx the parse tree
+	 */
+	void enterForcycle(CommandsParser.ForcycleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CommandsParser#forcycle}.
+	 * @param ctx the parse tree
+	 */
+	void exitForcycle(CommandsParser.ForcycleContext ctx);
 }
