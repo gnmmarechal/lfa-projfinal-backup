@@ -159,18 +159,6 @@ public class CommandsBaseListener implements CommandsListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSaturation(CommandsParser.SaturationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSaturation(CommandsParser.SaturationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBrightness(CommandsParser.BrightnessContext ctx) { }
 	/**
 	 * {@inheritDoc}

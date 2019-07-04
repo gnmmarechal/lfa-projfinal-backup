@@ -25,10 +25,9 @@ writing		:	'(' writing ')'
 operation :	'save' (writing|ID|IMAGE)						#SaveImage
 		   	| 'show' (writing|ID|IMAGE)						#ShowImage
 		   	| 'gray' (writing|ID|IMAGE)							#Gray
-		   	| 'blur' (writing|ID|IMAGE)							#Blur
-		   	| 'crop' NUM NUM (writing|ID|IMAGE)				#Crop
+		   	| 'blur' NUM (writing|ID|IMAGE)							#Blur
+		   	| 'crop' NUM NUM NUM NUM (writing|ID|IMAGE)				#Crop
 		   	| 'zoom' NUM (writing|ID|IMAGE)					#Zoom
-		   	| 'saturation' NUM	(writing|ID|IMAGE)				#Saturation
 		   	| 'brightness'	NUM	(writing|ID|IMAGE)				#Brightness
 		   	| 'edges' (writing|ID|IMAGE)						#Edges
 		   	| 'contrast' NUM (writing|ID|IMAGE)				#Contrast

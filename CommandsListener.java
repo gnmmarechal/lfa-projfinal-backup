@@ -139,18 +139,6 @@ public interface CommandsListener extends ParseTreeListener {
 	 */
 	void exitZoom(CommandsParser.ZoomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Saturation}
-	 * labeled alternative in {@link CommandsParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void enterSaturation(CommandsParser.SaturationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Saturation}
-	 * labeled alternative in {@link CommandsParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void exitSaturation(CommandsParser.SaturationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Brightness}
 	 * labeled alternative in {@link CommandsParser#operation}.
 	 * @param ctx the parse tree
