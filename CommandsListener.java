@@ -247,6 +247,18 @@ public interface CommandsListener extends ParseTreeListener {
 	 */
 	void exitDifference(CommandsParser.DifferenceContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Convert}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterConvert(CommandsParser.ConvertContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Convert}
+	 * labeled alternative in {@link CommandsParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitConvert(CommandsParser.ConvertContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CommandsParser#forcycle}.
 	 * @param ctx the parse tree
 	 */

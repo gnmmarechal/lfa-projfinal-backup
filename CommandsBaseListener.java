@@ -267,6 +267,18 @@ public class CommandsBaseListener implements CommandsListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConvert(CommandsParser.ConvertContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConvert(CommandsParser.ConvertContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterForcycle(CommandsParser.ForcycleContext ctx) { }
 	/**
 	 * {@inheritDoc}
