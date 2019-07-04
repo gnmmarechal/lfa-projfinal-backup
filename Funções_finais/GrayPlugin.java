@@ -39,7 +39,7 @@ public class GrayPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"	return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)";
+				"\treturn cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n";
 	}
 }
  

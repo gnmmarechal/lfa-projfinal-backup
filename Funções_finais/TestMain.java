@@ -5,6 +5,8 @@ public class TestMain {
 		System.out.println("Basic Plugin Test:\n");
 		Plugin cropPlugin = new CropPlugin();
 		printSpecs(cropPlugin);
+		Plugin cropIntPlugin = new CropIntPlugin();
+		printSpecs(cropIntPlugin);
 		Plugin rotatePlugin = new RotationPlugin();
 		printSpecs(rotatePlugin);
 		Plugin savePlugin = new SavePlugin();
@@ -13,10 +15,27 @@ public class TestMain {
 		printSpecs(showPlugin);
 		Plugin grayPlugin = new GrayPlugin();
 		printSpecs(grayPlugin);
-		Plugin ipPlugin = new ImagePlacerPlugin();
-		printSpecs(ipPlugin);
-		
-		
+		Plugin openPlugin = new OpenPlugin();
+		printSpecs(openPlugin);
+		Plugin blurPlugin = new BlurPlugin();
+		printSpecs(blurPlugin);
+		Plugin edgePlugin = new EdgesPlugin();
+		printSpecs(edgePlugin);
+		Plugin resPlugin = new ResizePlugin();
+		printSpecs(resPlugin);
+		Plugin scaPlugin = new ScalePlugin();
+		printSpecs(scaPlugin);
+		Plugin extPlugin = new ExtractPlugin();
+		printSpecs(extPlugin);
+		Plugin difPlugin = new DifferencePlugin();
+		printSpecs(difPlugin);
+		Plugin colPlugin = new ColoursPlugin();
+		printSpecs(colPlugin);
+		Plugin briPlugin = new BrightnessPlugin();
+		printSpecs(briPlugin);
+		Plugin conPlugin = new ContrastPlugin();
+		printSpecs(conPlugin);
+		/*
 		System.out.println("Code Generator Test:\n");
 		
 		LFACodeGenerator codeGen = new LFACodeGenerator();
@@ -40,8 +59,6 @@ public class TestMain {
 		System.out.println("Requiring gray function...");
 		codeGen.requireFunction("gray");
 		
-		System.out.println("Requiring image placer function...");
-		codeGen.requireFunction("imageplacer");
 		
 		System.out.println("Calling function...");
 		String[] arg = {"image", "1", "2", "3", "4"};
@@ -56,6 +73,7 @@ public class TestMain {
 		System.out.println("Current import block:\n" + codeGen.getImportBlock());
 		
 		System.out.println("Code output:\n" + codeGen.generateCode());
+		*/
 	}
 	//Função para simplificar o teste
 	private static void printSpecs(Plugin p) {

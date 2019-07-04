@@ -1,6 +1,6 @@
-public class CropPlugin implements Plugin
+public class ScalePlugin implements Plugin
 {
-	private String[] args = {"image","x","y","w","h"};
+	private String[] args = {"image","x"};
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
@@ -17,7 +17,7 @@ public class CropPlugin implements Plugin
 	}
 	public String getFunctionName()
 	{
-		return "crop";
+		return "scale";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -38,12 +38,9 @@ public class CropPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tif x < 0 or y < 0:\n" +
-				"\t\tprint(\"Invalid coordinates.\")\n" +
+				"\tif x < 1 or x > 1000:\n" +
+				"\t\tprint(\"Invalid scale value. Values: 1 - 1000\")\n" +
 				"\t\treturn image\n" +
-				"\tif w < 0 or h < 0:\n" +
-				"\t\tprint(\"Invalid rectangle size.\")\n" +
-				"\t\treturn image\n" +
-				"\treturn image[y:y+h, x:x+w]\n";
+				"\treturn cv2.resize(image, None, fx=x/100, fy=x/100)\n";
 	}
 }

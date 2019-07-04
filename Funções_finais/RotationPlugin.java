@@ -39,15 +39,15 @@ public class RotationPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"	(h, w) = image.shape[:2]\n" +
-				"	center = (w / 2, h / 2)\n" +
-				"	if isinstance(graus, str):\n" +
-				"	\ttry:\n" +
-				"	\t\tgraus = int(graus)\n" +
-				"	\texcept ValueError:\n" +
-				"	\t\tprint(\"given argument is not a number\")\n" +
-				"	M = cv2.getRotationMatrix2D(center, graus, 1.0)\n" +
-				"	rotated = cv2.warpAffine(image, M, (w, h))\n" +
-				"	return rotated";
+				"\t(h, w) = image.shape[:2]\n" +
+				"\tcenter = (w / 2, h / 2)\n" +
+				"\tif isinstance(graus, str):\n" +
+				"\t\ttry:\n" +
+				"\t\t\tgraus = int(graus)\n" +
+				"\t\texcept ValueError:\n" +
+				"\t\t\tprint(\"Given value is not a number\")\n" +
+				"\tM = cv2.getRotationMatrix2D(center, graus, 1.0)\n" +
+				"\trotated = cv2.warpAffine(image, M, (w, h))\n" +
+				"\treturn rotated\n";
 	}
 }

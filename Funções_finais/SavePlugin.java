@@ -39,8 +39,6 @@ public class SavePlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"	cv2.imshow(\"Result\", image)\n" +
-				"	cv2.imwrite(filename, image)\n" +
-				"	cv2.destroyAllWindows()";
+				"\tcv2.imwrite(filename, image)\n";
 	}
 }

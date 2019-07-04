@@ -1,6 +1,6 @@
-public class CropPlugin implements Plugin
+public class OpenPlugin implements Plugin
 {
-	private String[] args = {"image","x","y","w","h"};
+	private String[] args = {"path"};
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
@@ -15,9 +15,10 @@ public class CropPlugin implements Plugin
 		return retString;
 		
 	}
+	
 	public String getFunctionName()
 	{
-		return "crop";
+		return "open";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -38,12 +39,7 @@ public class CropPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tif x < 0 or y < 0:\n" +
-				"\t\tprint(\"Invalid coordinates.\")\n" +
-				"\t\treturn image\n" +
-				"\tif w < 0 or h < 0:\n" +
-				"\t\tprint(\"Invalid rectangle size.\")\n" +
-				"\t\treturn image\n" +
-				"\treturn image[y:y+h, x:x+w]\n";
+				"\treturn cv2.imread(path)\n";
 	}
 }
+ 

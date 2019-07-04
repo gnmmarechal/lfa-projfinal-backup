@@ -1,4 +1,4 @@
-public class ShowPlugin implements Plugin
+public class ExtractPlugin implements Plugin
 {
 	private String[] args = {"image"};
 	private String[] deps = {"cv2","numpy"};
@@ -15,10 +15,9 @@ public class ShowPlugin implements Plugin
 		return retString;
 		
 	}
-	
 	public String getFunctionName()
 	{
-		return "show";
+		return "extract";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -39,9 +38,19 @@ public class ShowPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tcv2.imshow(\"Result\", image)\n" +
-				"\tcv2.waitKey(0)\n" +
-				"\tcv2.destroyAllWindows()";
+				"\tgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n" +
+				"\tfaceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + \"haarcascade_frontalface_default.xml\")\n" +
+				"\tfaces = faceCascade.detectMultiScale(\n" +
+				"\t\tgray,\n" +
+				"\t\tscaleFactor=1.3,\n" +
+				"\t\tminNeighbors=3,\n" +
+				"\t\tminSize=(30,30)\n" +
+				"\t)\n" +
+				"\tprint(\"Found {0} Faces.\".format(len(faces)))\n" +
+				"\tfor (x, y, w, h) in faces:\n" +
+				"\t\tcv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 0), 2)\n" +
+				"\t\troi_color = image[y:y + h, x:x + w]\n" +
+				"\t\tprint(\"Face found. Saving.\")\n" +
+				"\t\tcv2.imwrite(str(w) + str(h) + '_faces.jpg', roi_color)\n";
 	}
 }
- 
