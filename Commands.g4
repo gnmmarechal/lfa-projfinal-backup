@@ -22,21 +22,22 @@ writing		:	'(' writing ')'
 				| operation
 				;
 
-operation :	'save' (writing|ID|IMAGE)						#SaveImage
-		   	| 'show' (writing|ID|IMAGE)						#ShowImage
+operation :	'save' (writing|ID|IMAGE)							#SaveImage
+		   	| 'show' (writing|ID|IMAGE)							#ShowImage
 		   	| 'gray' (writing|ID|IMAGE)							#Gray
-		   	| 'blur' NUM (writing|ID|IMAGE)							#Blur
-		   	| 'crop' NUM NUM NUM NUM (writing|ID|IMAGE)				#Crop
-		   	| 'zoom' NUM (writing|ID|IMAGE)					#Zoom
+		   	| 'blur' NUM (writing|ID|IMAGE)						#Blur
+		   	| 'crop' NUM NUM NUM NUM (writing|ID|IMAGE)			#Crop
+		   	| 'zoom' NUM (writing|ID|IMAGE)						#Zoom
 		   	| 'brightness'	NUM	(writing|ID|IMAGE)				#Brightness
 		   	| 'edges' (writing|ID|IMAGE)						#Edges
-		   	| 'contrast' NUM (writing|ID|IMAGE)				#Contrast
+		   	| 'contrast' NUM (writing|ID|IMAGE)					#Contrast
 		   	| 'rotate' NUM	(writing|ID|IMAGE)					#Rotate
 		   	| 'scale' NUM	(writing|ID|IMAGE)					#Scale
 		   	| 'resize' NUM NUM (writing|ID|IMAGE)		 		#Resize
 		   	| 'extract' (writing|ID|IMAGE)						#Extract
 		   	| 'contour' (writing|ID|IMAGE)						#Contour
 		   	| 'difference' (writing|((ID|IMAGE) (ID|IMAGE)))	#Difference
+			| 'convert' NUM (writing|(ID|IMAGE))				#Convert
 		   	;	
 
 
