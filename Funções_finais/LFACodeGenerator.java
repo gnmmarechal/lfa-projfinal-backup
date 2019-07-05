@@ -195,6 +195,10 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
+	public String generateChainedFunctionCall(String functionCall) //TO-DO
+	{
+		return null;
+	}
 	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
 	{
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
