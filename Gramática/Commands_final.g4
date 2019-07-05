@@ -28,6 +28,7 @@ writing2		:  	operation ',' operation
 operation 		: 	'gray'  		'(' (writing | ID | IMAGE ) ')'										#Gray
 				| 	'blur'  		'(' NUM ',' (writing | ID | IMAGE ) ')'								#Blur
 				| 	'crop'  		'(' NUM ',' NUM ',' NUM ',' NUM ',' (writing| ID | IMAGE ) ')'		#Crop
+				| 	'zoom'  		'(' NUM ',' (writing| ID | IMAGE ) ')'   							#Zoom
 				| 	'brightness'	'(' NUM ','	(writing|ID|IMAGE) ')'									#Brightness
 				| 	'edges'  		'(' (writing|ID|IMAGE) ')'											#Edges
 				| 	'contrast' 		'(' NUM ',' (writing|ID|IMAGE) ')'									#Contrast
@@ -35,6 +36,7 @@ operation 		: 	'gray'  		'(' (writing | ID | IMAGE ) ')'										#Gray
 				| 	'scale'  		'(' NUM ',' (writing|ID|IMAGE) ')'									#Scale
 				| 	'resize' 		'(' NUM ',' NUM ',' (writing|ID|IMAGE) ')'		 					#Resize
 				| 	'extract' 		'(' (writing|ID|IMAGE) ')'											#Extract
+				| 	'contour' 		'(' (writing|ID|IMAGE) ')'											#Contour
 				| 	'difference'  	'(' (writing2 | ( ID ',' ID ) | ( IMAGE ',' ID ) | (ID ',' IMAGE) | (IMAGE ',' IMAGE) | ( writing ',' ID) | (ID ',' writing) 
 							   		| (IMAGE ',' writing) | (writing ',' IMAGE)) ')'  					#Difference
 				| 	'convert' 		'(' NUM ',' (writing|(ID|IMAGE)) ')'								#Convert
