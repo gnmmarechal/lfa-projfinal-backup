@@ -7,6 +7,7 @@ public class LFACodeGenerator
 {
 	private List<Plugin> loadedPluginList; // Todos os plugins encontrados ficam nesta lista
 	private List<Plugin> usedPluginList; // Todos os plugins usados são adicionados pelo gestor de dependências. Plugins podem ser adicionados por nome com requireFunction.
+	private List<String> functionBlocks; // Blocos de definições de funções
 	private List<String> codeBlocks; // Código do programa em si
 
 	public LFACodeGenerator() throws Exception
@@ -171,7 +172,10 @@ public class LFACodeGenerator
 		// Adicionar código do programa
 		
 		codeOut += "# Program\n";
-		
+		for (String line : functionBlocks)
+		{
+			codeOut += line + "\n";
+		}
 		for (String line : codeBlocks)
 		{
 			codeOut += line + "\n";
@@ -195,6 +199,21 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
+	public static String generateFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines) // Gera a definição de uma função
+	{
+		String args = argumentNames.stream()
+			.collect(Collectors.joining(", "));
+		String retVal = "def " + functionName + "(" + args + "):\n";
+		for (String line : lines)
+		{
+			retVal += "\t" + line;
+		}
+		return retVal;
+	}
+	public String generateChainedFunctionCall(String functionCall) //TO-DO
+	{
+		return null;
+	}
 	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
 	{
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
@@ -217,6 +236,10 @@ public class LFACodeGenerator
 		
 	}
 	
+	public void addFunctionToBlock(String line) // Isto não usa requireFunction, talvez crie um tipo Function
+	{
+		this.functionBlocks.add(line);
+	}
 	public void addCode(String line) // Isto simplesmente adiciona um elemento aos blocos de código. Não deverá ser usado para chamar funções pois as dependências não são resolvidas automaticamente, mas se necessário, requireFunction pode ser usado para as resolver.
 	{
 		this.codeBlocks.add(line);
