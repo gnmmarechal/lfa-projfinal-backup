@@ -35,6 +35,11 @@ public class TestMain {
 		printSpecs(briPlugin);
 		Plugin conPlugin = new ContrastPlugin();
 		printSpecs(conPlugin);
+		Plugin filPlugin = new FilterPlugin();
+		printSpecs(filPlugin);
+		Plugin convPlugin = new ConvertPlugin();
+		printSpecs(convPlugin);
+		
 		/*
 		System.out.println("Code Generator Test:\n");
 		

@@ -137,12 +137,70 @@ def rotation(image, graus):
 
 def gray(image):
 	return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+""" Função removida
+def hue(image,x):
+	if x < 0 or x > 255:
+		print("Invalid hue value. Values: 0 - 255")
+		return image
+	w = 0
+	h = 0
+	hsv = convert(image,5)
+	while(not h > image.shape[0]):
+		while(not w > image.shape[1]):
+			p = hsv[w,h]
+			t = p[0] + x
+			if t < 0:
+				t = 0
+			if t > 255:
+				t = 255
+			p[0] = t 
+			w = w + 1
+		h = h + 1
+	return cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+"""
+def filter(image,r,g,b):	
+	new = np.zeros(image.shape, image.dtype)
+	for h in range(image.shape[0]):
+		for w in range(image.shape[1]):
+			new[h,w] = [image[h,w][0] * b, image[h,w][1] * g, image[h,w][2] * r]
+	return new
+	
+def convert(image,type):
+	if type == 1:
+		return filter(image,1,0,0)
+	if type == 2:
+		return filter(image,0,1,0)
+	if type == 3:
+		return filter(image,0,0,1)
+	if type == 4:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+	if type == 5:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
+	if type == 6:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2LUV)
+	if type == 7:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2XYZ)	
+	if type == 8:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)	
+	if type == 9:
+		return cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
+	if type == 12:
+		return filter(image,1,1,0)
+	if type == 13:
+		return filter(image,1,0,1)
+	if type == 23:
+		return filter(image,0,1,1)
+	print("Type not recognized")	
+	return image
+
 
 def main():
 	img = open("harold1.jpg")
 	img2 = open("harold2.jpg")
 	img3 = open("harold1_hello.jpg")
-	show(crop(img2,450,200,8000,400))
+	#show(img)
+	show(convert(img,12))
+	#show(crop(img2,450,200,8000,400))
 	#show(scale(img,1000))
 	#show(brightness(img,0))
 	#show(contrast(img,70))
