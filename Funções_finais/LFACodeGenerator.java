@@ -195,6 +195,17 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
+	public static String generateFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines) // Gera a definição de uma função
+	{
+		String args = argumentNames.stream()
+			.collect(Collectors.joining(", "));
+		String retVal = "def " + functionName + "(" + args + "):\n";
+		for (String line : lines)
+		{
+			retVal += "\t" + line;
+		}
+		return retVal;
+	}
 	public String generateChainedFunctionCall(String functionCall) //TO-DO
 	{
 		return null;
