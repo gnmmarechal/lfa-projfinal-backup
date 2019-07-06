@@ -14,7 +14,7 @@ public class LFACodeGenerator
 	
 	public enum TargetLanguage
 	{
-		Python, Java
+		Python, Java // Suporte de Java bastante incompleto, não funciona ainda, o código gerado ainda segue standards de Python
 	}
 	
 	public LFACodeGenerator() throws Exception
