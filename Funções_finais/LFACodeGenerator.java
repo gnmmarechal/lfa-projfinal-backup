@@ -50,7 +50,8 @@ public class LFACodeGenerator
 						{
 							if (!p.getFunctionName().equals(pluginToAdd.getFunctionName()))
 							{
-								loadedPluginList.add(pluginToAdd);
+								if (pluginToAdd.getFunctionLanguage() == this.targetLang)
+									loadedPluginList.add(pluginToAdd);
 							}
 							else
 							{
