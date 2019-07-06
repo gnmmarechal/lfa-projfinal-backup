@@ -1,5 +1,6 @@
 public interface Plugin
 {
+	public String getFunctionLanguage();
 	public String getFunctionName();
 	public int getFunctionArgumentCount();
 	public String[] getFunctionArguments();

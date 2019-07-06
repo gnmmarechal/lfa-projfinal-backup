@@ -4,6 +4,11 @@ public class ConvertPlugin implements Plugin
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {"filter"};
 	
+	public String getFunctionLanguage()
+	{
+		return "Python";
+	}
+	
 	private String getArgString()
 	{
 		String retString = "";

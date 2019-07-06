@@ -9,9 +9,21 @@ public class LFACodeGenerator
 	private List<Plugin> usedPluginList; // Todos os plugins usados são adicionados pelo gestor de dependências. Plugins podem ser adicionados por nome com requireFunction.
 	private List<String> functionBlocks; // Blocos de definições de funções
 	private List<String> codeBlocks; // Código do programa em si
-
+	
+	private TargetLanguage targetLang; 
+	
+	public enum TargetLanguage
+	{
+		Python, Java
+	}
+	
 	public LFACodeGenerator() throws Exception
 	{
+		this(TargetLanguage.Python);
+	}
+	public LFACodeGenerator(TargetLanguage language) throws Exception
+	{
+		this.targetLang = language;
 		this.codeBlocks = new ArrayList<String>();
 		this.loadedPluginList = new ArrayList<Plugin>();
 		this.usedPluginList = new ArrayList<Plugin>();

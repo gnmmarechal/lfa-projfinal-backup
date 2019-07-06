@@ -4,6 +4,11 @@ public class EdgesPlugin implements Plugin
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
+	public String getFunctionLanguage()
+	{
+		return "Python";
+	}
+	
 	private String getArgString()
 	{
 		String retString = "";
