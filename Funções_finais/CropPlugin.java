@@ -4,10 +4,11 @@ public class CropPlugin implements Plugin
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
-	public String getFunctionLanguage()
+	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
-		return "Python";
+		return LFACodeGenerator.TargetLanguage.Python;
 	}
+	
 	private String getArgString()
 	{
 		String retString = "";

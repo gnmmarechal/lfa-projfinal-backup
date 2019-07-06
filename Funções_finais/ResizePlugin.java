@@ -4,6 +4,11 @@ public class ResizePlugin implements Plugin
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
+	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
+	{
+		return LFACodeGenerator.TargetLanguage.Python;
+	}
+	
 	private String getArgString()
 	{
 		String retString = "";

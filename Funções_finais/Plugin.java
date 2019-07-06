@@ -1,6 +1,6 @@
 public interface Plugin
 {
-	public String getFunctionLanguage();
+	public LFACodeGenerator.TargetLanguage getFunctionLanguage();
 	public String getFunctionName();
 	public int getFunctionArgumentCount();
 	public String[] getFunctionArguments();
