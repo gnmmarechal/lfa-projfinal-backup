@@ -187,7 +187,7 @@ public class LFACodeGenerator
 		if (targetLang == TargetLanguage.Java) // Incompleto
 		{
 			
-			codeOut = "// Generated with LFACodeGenerator";
+			codeOut = "// Generated with LFACodeGenerator\n";
 			codeOut += this.getImportBlock();
 			codeOut += "public class Main {\n" +
 					   "	public static void main(String[] args) {\n";
