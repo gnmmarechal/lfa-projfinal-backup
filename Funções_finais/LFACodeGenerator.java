@@ -212,7 +212,7 @@ public class LFACodeGenerator
 		return functionCall;
 	}
 	
-	public static String generateFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines) // Gera a definição de uma função
+	public static String generatePythonFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines) // Gera a definição de uma função
 	{
 		String args = argumentNames.stream()
 			.collect(Collectors.joining(", "));
@@ -222,6 +222,31 @@ public class LFACodeGenerator
 			retVal += "\t" + line;
 		}
 		return retVal;
+	}
+	
+	public static String generateJavaFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines) // Gera a definição de uma função TO-DO
+	{
+		String args = argumentNames.stream()
+			.collect(Collectors.joining(", "));
+		String retVal = "def " + functionName + "(" + args + "):\n";
+		for (String line : lines)
+		{
+			retVal += "\t" + line;
+		}
+		return retVal;
+	}
+	
+	public String generateFunctionDefinition(String functionName, List<String> argumentNames, List<String> lines)
+	{
+		switch(this.targetLang)
+		{
+			case Java:
+				return generateJavaFunctionDefinition(functionName, argumentNames, lines);
+			case Python:
+				return generatePythonFunctionDefinition(functionName, argumentNames, lines);
+		}
+		
+		return "TARGET LANG?";
 	}
 	public String generateChainedFunctionCall(String functionCall) //TO-DO
 	{
