@@ -1,8 +1,8 @@
 public class ConvertPlugin implements Plugin
 {
-	private String[] args = {"image","type"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {"filter"};
+	private String[] args = {"img","type"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"filter","copy","Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -43,31 +43,33 @@ public class ConvertPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
+				"\timage = copy(img)\n" +
 				"\tif type == 1:\n" +
-				"\t\treturn filter(image,1,0,0)\n" +
-				"\tif type == 2:\n" +
-				"\t\treturn filter(image,0,1,0)\n" +
-				"\tif type == 3:\n" +
-				"\t\treturn filter(image,0,0,1)\n" +
-				"\tif type == 4:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n" +
-				"\tif type == 5:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2HLS)\n" +
-				"\tif type == 6:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2LUV)\n" +
-				"\tif type == 7:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2XYZ)\n" +
-				"\tif type == 8:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2RGB)\n" +
-				"\tif type == 9:\n" +
-				"\t\treturn cv2.cvtColor(image, cv2.COLOR_BGR2YUV)\n" +
-				"\tif type == 12:\n" +
-				"\t\treturn filter(image,1,1,0)\n" +
-				"\tif type == 13:\n" +
-				"\t\treturn filter(image,1,0,1)\n" +
-				"\tif type == 23:\n" +
-				"\t\treturn filter(image,0,1,1)\n" +			
-				"\tprint(\"Type not recognized\")\n" +
+				"\t\timage.elem =  filter(image.elem,1,0,0)\n" +
+				"\telif type == 2:\n" +
+				"\t\timage.elem =  filter(image.elem,0,1,0)\n" +
+				"\telif type == 3:\n" +
+				"\t\timage.elem =  filter(image.elem,0,0,1)\n" +
+				"\telif type == 4:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2GRAY)\n" +
+				"\telif type == 5:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2HLS)\n" +
+				"\telif type == 6:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2LUV)\n" +
+				"\telif type == 7:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2XYZ)\n" +
+				"\telif type == 8:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2RGB)\n" +
+				"\telif type == 9:\n" +
+				"\t\timage.elem =  cv2.cvtColor(image.elem, cv2.COLOR_BGR2YUV)\n" +
+				"\telif type == 12:\n" +
+				"\t\timage.elem =  filter(image.elem,1,1,0)\n" +
+				"\telif type == 13:\n" +
+				"\t\timage.elem =  filter(image.elem,1,0,1)\n" +
+				"\telif type == 23:\n" +
+				"\t\timage.elem =  filter(image.elem,0,1,1)\n" +	
+				"\telse:\n" +		
+				"\t\tprint(\"Type not recognized\")\n" +
 				"\treturn image\n";
 	}
 }

@@ -5,8 +5,6 @@ public class TestMain {
 		System.out.println("Basic Plugin Test:\n");
 		Plugin cropPlugin = new CropPlugin();
 		printSpecs(cropPlugin);
-		Plugin cropIntPlugin = new CropIntPlugin();
-		printSpecs(cropIntPlugin);
 		Plugin rotatePlugin = new RotationPlugin();
 		printSpecs(rotatePlugin);
 		Plugin savePlugin = new SavePlugin();
@@ -39,7 +37,10 @@ public class TestMain {
 		printSpecs(filPlugin);
 		Plugin convPlugin = new ConvertPlugin();
 		printSpecs(convPlugin);
-		
+		Plugin copia = new CopyPlugin();
+		printSpecs(copia);
+		Plugin classe = new ClassImagePlugin();
+		printSpecs(classe);
 		
 		System.out.println("Code Generator Test:\n");
 		

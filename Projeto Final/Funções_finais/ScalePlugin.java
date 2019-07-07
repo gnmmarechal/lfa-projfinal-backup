@@ -1,8 +1,8 @@
 public class ScalePlugin implements Plugin
 {
-	private String[] args = {"image","x"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img","x"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -45,7 +45,9 @@ public class ScalePlugin implements Plugin
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
 				"\tif x < 1 or x > 1000:\n" +
 				"\t\tprint(\"Invalid scale value. Values: 1 - 1000\")\n" +
-				"\t\treturn image\n" +
-				"\treturn cv2.resize(image, None, fx=x/100, fy=x/100)\n";
+				"\t\treturn img\n" +
+				"\timage = copy(img)\n" +
+				"\timage.elem = cv2.resize(image.elem, None, fx=x/100, fy=x/100)\n" +
+				"\treturn image\n";
 	}
 }

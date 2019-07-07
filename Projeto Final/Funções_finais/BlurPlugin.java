@@ -1,8 +1,8 @@
 public class BlurPlugin implements Plugin
 {
-	private String[] args = {"image","x"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img","x"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"copy","Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -45,9 +45,11 @@ public class BlurPlugin implements Plugin
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
 				"\tif x < 1 or x > 100:\n" +
 				"\t\tprint(\"Invalid blur value. Values: 1 - 100\")\n" +
-				"\t\treturn image\n" +
+				"\t\treturn img\n" +
 				"\tif x%2 == 0:\n" +
 				"\t\tx = x-1\n" +
-				"\treturn cv2.GaussianBlur(image,(x,x),0)\n";
+				"\timage = copy(img)\n" +
+				"\timage.elem = cv2.GaussianBlur(image.elem,(x,x),0))\n" +
+				"\treturn image\n";
 	}
 }

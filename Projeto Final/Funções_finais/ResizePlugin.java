@@ -1,8 +1,8 @@
 public class ResizePlugin implements Plugin
 {
-	private String[] args = {"image","w","h"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img","w","h"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -45,7 +45,9 @@ public class ResizePlugin implements Plugin
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
 				"\tif w < 1 or h < 1:\n" +
 				"\t\tprint(\"Invalid resizing values.\")\n" +
-				"\t\treturn image\n" +
-				"\treturn cv2.resize(image,(w,h))\n";
+				"\t\treturn img\n" +
+				"\timage = copy(img)\n" +
+				"\timage.elem = cv2.resize(image.elem,(w,h))\n" +
+				"\treturn image\n";
 	}
 }

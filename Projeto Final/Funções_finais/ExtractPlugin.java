@@ -1,8 +1,8 @@
 public class ExtractPlugin implements Plugin
 {
-	private String[] args = {"image"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -43,7 +43,8 @@ public class ExtractPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n" +
+				"\timage = copy(img)\n" +
+				"\tgray = cv2.cvtColor(image.elem, cv2.COLOR_BGR2GRAY)\n" +
 				"\tfaceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + \"haarcascade_frontalface_default.xml\")\n" +
 				"\tfaces = faceCascade.detectMultiScale(\n" +
 				"\t\tgray,\n" +
@@ -53,9 +54,8 @@ public class ExtractPlugin implements Plugin
 				"\t)\n" +
 				"\tprint(\"Found {0} Faces.\".format(len(faces)))\n" +
 				"\tfor (x, y, w, h) in faces:\n" +
-				"\t\tcv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 0), 2)\n" +
-				"\t\troi_color = image[y:y + h, x:x + w]\n" +
+				"\t\troi_color = image.elem[y:y + h, x:x + w]\n" +
 				"\t\tprint(\"Face found. Saving.\")\n" +
-				"\t\tcv2.imwrite(str(w) + str(h) + '_faces.jpg', roi_color)\n";
+				"\t\tcv2.imwrite(image.name + \"_\" + str(w) + str(h) + '_faces.jpg', roi_color)\n";
 	}
 }

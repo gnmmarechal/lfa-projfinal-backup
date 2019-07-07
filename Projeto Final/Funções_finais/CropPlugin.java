@@ -1,8 +1,8 @@
 public class CropPlugin implements Plugin
 {
-	private String[] args = {"image","x","y","w","h"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img","x","y","w","h"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -45,10 +45,12 @@ public class CropPlugin implements Plugin
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
 				"\tif x < 0 or y < 0:\n" +
 				"\t\tprint(\"Invalid coordinates.\")\n" +
-				"\t\treturn image\n" +
+				"\t\treturn img\n" +
 				"\tif w < 0 or h < 0:\n" +
 				"\t\tprint(\"Invalid rectangle size.\")\n" +
-				"\t\treturn image\n" +
-				"\treturn image[y:y+h, x:x+w]\n";
+				"\t\treturn img\n" +
+				"\timage = copy(img)\n" +
+				"\timage.elem = image.elem[y:y+h, x:x+w]\n" +
+				"\treturn image\n";
 	}
 }

@@ -1,8 +1,8 @@
 public class OpenPlugin implements Plugin
 {
 	private String[] args = {"path"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -44,7 +44,8 @@ public class OpenPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\treturn cv2.imread(path)\n";
+				"\timg = cv2.imread(path)\n" +
+				"\treturn Image(img,path))\n";
 	}
 }
  

@@ -1,8 +1,8 @@
 public class RotationPlugin implements Plugin
 {
-	private String[] args = {"image", "graus"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img", "d"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -44,15 +44,11 @@ public class RotationPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
+				"\timage = copy(img)\n" +
 				"\t(h, w) = image.shape[:2]\n" +
 				"\tcenter = (w / 2, h / 2)\n" +
-				"\tif isinstance(graus, str):\n" +
-				"\t\ttry:\n" +
-				"\t\t\tgraus = int(graus)\n" +
-				"\t\texcept ValueError:\n" +
-				"\t\t\tprint(\"Given value is not a number\")\n" +
-				"\tM = cv2.getRotationMatrix2D(center, graus, 1.0)\n" +
-				"\trotated = cv2.warpAffine(image, M, (w, h))\n" +
-				"\treturn rotated\n";
+				"\tM = cv2.getRotationMatrix2D(center, d, 1.0)\n" +
+				"\timage.elem = cv2.warpAffine(image.elem, M, (w, h))\n" +
+				"\treturn image\n";
 	}
 }

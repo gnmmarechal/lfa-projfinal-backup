@@ -1,7 +1,7 @@
 public class SavePlugin implements Plugin
 {
 	private String[] args = {"filename", "image"};
-	private String[] deps = {"cv2","numpy"};
+	private String[] deps = {"cv2","numpy","os.path","pathlib"};
 	private String[] pluginDeps = {};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()

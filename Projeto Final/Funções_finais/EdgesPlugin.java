@@ -1,8 +1,8 @@
 public class EdgesPlugin implements Plugin
 {
-	private String[] args = {"image"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] args = {"img"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -44,7 +44,9 @@ public class EdgesPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\treturn cv2.Canny(image,100,200)\n";
+				"\timage = copy(img)\n" + 
+				"\timage.elem = cv2.Canny(image.elem,100,200)\n" +
+				"\treturn image\n";
 	}
 }
  

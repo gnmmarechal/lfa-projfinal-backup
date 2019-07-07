@@ -1,6 +1,6 @@
-public class CropIntPlugin implements Plugin
+public class ImagePlugin implements Plugin
 {
-	private String[] args = {"image"};
+	private String[] args = {};
 	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
@@ -22,7 +22,7 @@ public class CropIntPlugin implements Plugin
 	}
 	public String getFunctionName()
 	{
-		return "cropInt";
+		return "Image";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -42,12 +42,9 @@ public class CropIntPlugin implements Plugin
 	}
 	public String getFunction()
 	{
-		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tr = cv2.selectROI(image, False)\n" +
-				"\tcv2.destroyAllWindows()\n" +
-				"\tcropped = image[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]\n" +
-				"\tif cropped.shape[0] <= 0 or cropped.shape[1] <= 0:\n" +
-				"\t\treturn image\n" +
-				"\treturn cropped\n";
+		return "class " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
+				"\tdef __init__(self,elem,path):\n" +
+				"\t\tself.elem = elem\n" +
+				"\t\tself.path = path\n";
 	}
 }

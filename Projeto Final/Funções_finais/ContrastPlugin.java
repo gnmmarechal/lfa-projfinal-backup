@@ -1,8 +1,8 @@
 public class ContrastPlugin implements Plugin
 {
-	private String[] args = {"image","x"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {"colours"};
+	private String[] args = {"img","x"};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"colours","copy","Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -45,7 +45,9 @@ public class ContrastPlugin implements Plugin
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
 				"\tif x < 0 or x > 300:\n" +
 				"\t\tprint(\"Invalid contrast value. Values: 0 - 300\")\n" +
-				"\t\treturn image\n" +
-				"\treturn colours(image,x/100,1)\n";
+				"\t\treturn img\n" +
+				"\timage = copy(img)\n" +
+				"\timage.elem = colours(image.elem,x/100,1))\n" +
+				"\treturn image\n";
 	}
 }

@@ -1,7 +1,7 @@
-public class ColoursPlugin implements Plugin
+public class ClassImagePlugin implements Plugin
 {
-	private String[] args = {"img","a","b"};
-	private String[] deps = {"cv2"};
+	private String[] args = {};
+	private String[] deps = {"cv2","numpy"};
 	private String[] pluginDeps = {};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
@@ -20,10 +20,9 @@ public class ColoursPlugin implements Plugin
 		return retString;
 		
 	}
-	
 	public String getFunctionName()
 	{
-		return "colours";
+		return "Image";
 	}
 	public String[] getFunctionArguments()
 	{
@@ -43,8 +42,9 @@ public class ColoursPlugin implements Plugin
 	}
 	public String getFunction()
 	{
-		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\treturn cv2.convertScaleAbs(img, alpha=a, beta=b)\n";
+		return "class " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
+				"\tdef __init__(self,elem,path):\n" +
+				"\t\tself.elem = elem\n" +
+				"\t\tself.path = path\n";
 	}
 }
- 
