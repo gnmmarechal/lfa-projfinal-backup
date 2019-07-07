@@ -43,7 +43,7 @@ operation 		: 	'gray'  		'(' (writing | ID | IMAGE ) ')'										#Gray
 save			: 	'save' '(' ID ')'																	#SaveFile
 				;
 
-repeat			:  	'repeat' '(' NUM ')' block	
+repeat			:  	'repeat' '(' NUM ')' operation	
 				;
 
 show			:	'show' '(' (ID | IMAGE)  ')'														#ShowImage
