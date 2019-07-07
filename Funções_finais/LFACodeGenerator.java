@@ -25,6 +25,7 @@ public class LFACodeGenerator
 	{
 		this.targetLang = language;
 		this.codeBlocks = new ArrayList<String>();
+		this.functionBlocks = new ArrayList<String>();
 		this.loadedPluginList = new ArrayList<Plugin>();
 		this.usedPluginList = new ArrayList<Plugin>();
 		// Load plugins
@@ -43,7 +44,11 @@ public class LFACodeGenerator
 			{
 				try {
 					Plugin pluginToAdd = PluginManager.load(foundFile.substring(0,foundFile.lastIndexOf('.')));
-					if (loadedPluginList.isEmpty()) loadedPluginList.add(pluginToAdd);
+					if (loadedPluginList.isEmpty()) 
+					{
+						if (pluginToAdd.getFunctionLanguage() == this.targetLang)
+							loadedPluginList.add(pluginToAdd);
+					}
 					else
 					{
 						for (Plugin p : loadedPluginList) // Check for duplicates
@@ -72,6 +77,8 @@ public class LFACodeGenerator
 		List<String> depList = new ArrayList<String>();
 		for (Plugin p : loadedPluginList)
 		{
+			//System.out.println("Plugin : " + p.getFunctionName());
+			//System.out.println(": " + Arrays.toString(depList.toArray()));
 			for (String dep : p.getPluginDependencies())
 			{
 				if (!depList.contains(dep))
@@ -88,7 +95,8 @@ public class LFACodeGenerator
 					foundDep = true;
 			}
 			// Se for false, não encontrou a dependência
-			throw new Exception("Missing plugin dependency: " + depName);
+			if (!foundDep)
+				throw new Exception("Missing plugin dependency: " + depName);
 		}
 	}
 	public boolean requireFunction(String functionName) // Returns true if successful, false if function isn't found
