@@ -40,7 +40,7 @@ public class TestMain {
 		Plugin convPlugin = new ConvertPlugin();
 		printSpecs(convPlugin);
 		
-		/*
+		
 		System.out.println("Code Generator Test:\n");
 		
 		LFACodeGenerator codeGen = new LFACodeGenerator();
@@ -78,7 +78,7 @@ public class TestMain {
 		System.out.println("Current import block:\n" + codeGen.getImportBlock());
 		
 		System.out.println("Code output:\n" + codeGen.generateCode());
-		*/
+		
 	}
 	//Função para simplificar o teste
 	private static void printSpecs(Plugin p) {

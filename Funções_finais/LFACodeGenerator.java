@@ -168,7 +168,7 @@ public class LFACodeGenerator
 		String retBlock = "";
 		for (Plugin p : usedPluginList)
 		{
-			retBlock += p.getFunction() + "\n";
+			retBlock += p.getFunction() + "\n"; // Isto não adiciona \t, isso terá de ser feito nos plugins
 		}
 		return retBlock;
 	}
