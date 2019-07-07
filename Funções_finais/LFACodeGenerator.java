@@ -197,11 +197,31 @@ public class LFACodeGenerator
 		return codeOut;
 	}
 	
+	public boolean declareVariable(String variableType, String variableName, String functionName, List<String> functionArgs)
+	{
+		if (targetLang == TargetLanguage.Python)
+			return false;
+		if (!this.requireFunction(functionName))
+			return false;
+		this.addCode(generateJavaVariableDeclaration(variableType, variableName, functionName, functionArgs));
+		return true;
+	}
 	public boolean setVariable(String variableName, String functionName, List<String> functionArgs) // Adiciona uma linha de código para definir uma variável para o valor de uma função. Também gere as dependências.
 	{
 		if (!this.requireFunction(functionName))
 			return false;
-		this.addCode(generateVariableSet(variableName, functionName, functionArgs));
+		
+		String varSet = "";
+		switch(targetLang)
+		{
+			case Java:
+				varSet = generateJavaVariableSet(variableName, functionName, functionArgs);
+				break;
+			case Python:
+				varSet = generatePythonVariableSet(variableName, functionName, functionArgs);
+				break;
+		}
+		this.addCode(varSet);
 		return true;
 	}
 	public static String generateFunctionCall(String functionName, List<String> functionArgs) // Gera uma linha de código de chamada de função 
@@ -277,8 +297,17 @@ public class LFACodeGenerator
 	{
 		if (!this.requireFunction(functionName))
 			return false;
-
-		this.addCode(generateFunctionCall(functionName, functionArgs));
+		String funcCall = "";
+		switch(targetLang)
+		{
+			case Python:
+				funcCall = generateFunctionCall(functionName, functionArgs);
+				break;
+			case Java:
+				funcCall = generateFunctionCall(functionName, functionArgs) + ";";
+				break;
+		}
+		this.addCode(funcCall);
 		
 		return true;
 		
