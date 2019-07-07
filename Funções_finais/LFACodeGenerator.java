@@ -152,9 +152,12 @@ public class LFACodeGenerator
 	{
 		String retBlock = "";
 		List<String> imports = this.getImports();
+		String semCol = "";
+		if (targetLang == TargetLanguage.Java)
+			semCol = ";";
 		for (String impVal : imports)
 		{
-			retBlock += "import " + impVal + "\n";
+			retBlock += "import " + impVal + semCol + "\n";
 		}
 		
 		return retBlock;
@@ -171,7 +174,21 @@ public class LFACodeGenerator
 	}
 	public String generateCode()
 	{
-		String codeOut = "#!/usr/bin/env python3" + // Starts with the shebang line
+		String codeOut = "";
+		
+		if (targetLang == TargetLanguage.Java) // Incompleto
+		{
+			
+			codeOut = "// Generated with LFACodeGenerator";
+			codeOut += this.getImportBlock();
+			codeOut += "public class Main {\n" +
+						"	public static void main(String[] args) {\n";
+			
+			
+			return codeOut;
+		}
+		
+		codeOut = "#!/usr/bin/env python3" + // Starts with the shebang line
 				"\n# Generated with LFACodeGenerator\n";
 				
 		// Adicionar o bloco de import
