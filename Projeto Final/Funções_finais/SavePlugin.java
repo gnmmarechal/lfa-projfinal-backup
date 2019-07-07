@@ -1,8 +1,8 @@
 public class SavePlugin implements Plugin
 {
-	private String[] args = {"filename", "image"};
+	private String[] args = {"image"};
 	private String[] deps = {"cv2","numpy","os.path","pathlib"};
-	private String[] pluginDeps = {};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -44,6 +44,16 @@ public class SavePlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tcv2.imwrite(filename, image)\n";
+				"\tdest = \"copy_of_\" + image.name + \".\" + image.extension\n" +
+				"\ttarget_file = pathlib.Path(dest)\n" +
+				"\tif target_file.is_file():\n" +
+				"\t\ti = 0\n" +
+				"\t\twhile(target_file.is_file()):\n" +
+				"\t\t\ti = i + 1\n" +
+				"\t\t\tdest = \"copy_of_\" + image.name + \" (\" + str(i) + \") .\" + image.extension\n" +
+				"\t\t\ttarget_file = pathlib.Path(dest)\n" +
+				"\tcv2.imwrite(dest, image.elem)\n";
+	
+	
 	}
 }

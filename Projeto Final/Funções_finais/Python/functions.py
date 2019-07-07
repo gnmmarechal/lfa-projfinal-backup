@@ -54,9 +54,12 @@ def save(image):
 	cv2.imwrite(dest, image.elem)
 
 def show(image):
-	cv2.imshow(image.name, image.elem)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
+	if image.elem.shape[0] > 720 or image.elem.shape[0] > 1280:
+		show(scale(image,70))
+	else:
+		cv2.imshow(image.name, image.elem)
+		cv2.waitKey(0)
+		cv2.destroyAllWindows()
 	
 #Aceita valores de 1-100, mas os valores pares são reduzidos em 1
 #Utiliza Gaussian Blur simples
@@ -225,8 +228,8 @@ def main():
 	#show(brightness(img,10))
 	#show(blur(img,40))
 	#img = blur(img,30)
-	save(img)
-	show(img)
+	#save(img)
+	show(img2)
 	
 	
 

@@ -1,8 +1,8 @@
 public class ShowPlugin implements Plugin
 {
 	private String[] args = {"image"};
-	private String[] deps = {"cv2","numpy"};
-	private String[] pluginDeps = {};
+	private String[] deps = {"cv2"};
+	private String[] pluginDeps = {"Image"};
 	
 	public LFACodeGenerator.TargetLanguage getFunctionLanguage()
 	{
@@ -44,9 +44,12 @@ public class ShowPlugin implements Plugin
 	public String getFunction()
 	{
 		return "def " + this.getFunctionName() + "(" + this.getArgString() + "):\n" +
-				"\tcv2.imshow(\"Result\", image)\n" +
-				"\tcv2.waitKey(0)\n" +
-				"\tcv2.destroyAllWindows()";
+				"\tif image.elem.shape[0] > 720 or image.elem.shape[0] > 1280:\n" +
+				"\t\tshow(scale(image,70))\n" +
+				"\telse:\n" +
+				"\t\tcv2.imshow(\"Result\", image)\n" +
+				"\t\tcv2.waitKey(0)\n" +
+				"\t\tcv2.destroyAllWindows()";
 	}
 }
  
