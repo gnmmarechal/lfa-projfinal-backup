@@ -1,4 +1,0 @@
-img = "image.jpg";
-img2 = gray(img);
-img3 = blur(50, gray("image.jpg"));
-{img4 = img3; show(img4); save(img4);}
