@@ -182,9 +182,25 @@ public class LFACodeGenerator
 			codeOut = "// Generated with LFACodeGenerator";
 			codeOut += this.getImportBlock();
 			codeOut += "public class Main {\n" +
-						"	public static void main(String[] args) {\n";
+					   "	public static void main(String[] args) {\n";
+					   
+			for (String line : codeBlocks)
+			{
+				codeOut += line + "\n";
+			}
 			
+			codeOut += "	}\n//Function Block\n";
 			
+			for (String line : functionBlocks)
+			{
+				codeOut += "\t" + line + "\n";
+			}
+			
+			codeOut += "// Language Function Block\n";
+			
+			codeOut += this.getFunctionBlock(); // Isto não adiciona \t, talvez tenha de ser feito directamente no outro método
+			
+			codeOut += "}\n// EOF - Generated with LFACodeGenerator";
 			return codeOut;
 		}
 		
