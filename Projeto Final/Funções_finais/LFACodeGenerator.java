@@ -165,7 +165,16 @@ public class LFACodeGenerator
 			semCol = ";";
 		for (String impVal : imports)
 		{
-			retBlock += "import " + impVal + semCol + "\n";
+			// Função para importar apenas algo de uma library
+			if (targetLang == TargetLanguage.Python && impVal.contains("#"))
+			{
+				// Formato library#thing -> from library import thing
+				String[] libImp = impVal.split("#");
+				if (libImp.length != 2) return "";
+				retBlock += "from " + libImp[0] + " import " + libImp[1] + "\n";
+			}
+			else
+				retBlock += "import " + impVal + semCol + "\n";
 		}
 		
 		return retBlock;
