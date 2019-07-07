@@ -252,7 +252,17 @@ public class LFACodeGenerator
 	{
 		return null;
 	}
-	public static String generateVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
+	public static String generatePythonVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
+	{
+		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
+	}
+
+	public static String generateJavaVariableDeclaration(String variableType, String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
+	{
+		return variableType + " " + variableName + " = " + generateFunctionCall(functionName, functionArgs) + ";";
+	}
+		
+	public static String generateJavaVariableSet(String variableName, String functionName, List<String> functionArgs) // Gera uma linha de código do tipo var = func(args)
 	{
 		return variableName + " = " + generateFunctionCall(functionName, functionArgs);
 	}
